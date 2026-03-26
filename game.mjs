@@ -52,12 +52,14 @@ export default class Game {
                 this.processingKey(button.innerHTML, button.dataset.value)
             })
         })
-        document.addEventListener('keydown', e => {
-            if(this.isChecking) return;
-            const currentLetter = Object.keys(SETTINGS['KEYBOARD']).find(key => SETTINGS['KEYBOARD'][key] === e.code);
-            this.processingKey(currentLetter, e.code);
-        })
+        document.addEventListener('keydown', this.keyDown) 
     }
+    keyDown = (e) => {
+        if(this.isChecking) return;
+        const currentLetter = Object.keys(SETTINGS['KEYBOARD']).find(key => SETTINGS['KEYBOARD'][key] === e.code);
+        this.processingKey(currentLetter, e.code);
+    }
+    
 
     generateWord() {
         const Words = SETTINGS['WORDS'];
@@ -103,20 +105,24 @@ export default class Game {
                     alert('Данного слова не существет')
                 }, 300)
             } else {
+                if(this.X == 4 && this.Y == 4){
+                    document.getElementById('lose-game-contaner').style.display = 'flex';
+                }
                 this.checkWord(wordInStroke);
                 this.X = -1;
                 this.Y++;
             }
             setTimeout(() => {
                 for(let i = 0; i < 5; i++) {
-                    const checkedTd = document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`);
-                    checkedTd.classList.remove('check')
+                    for(let k = 0; k < 5; k++){
+                        const checkedTd = document.querySelector(`td[data-x='${k}'][data-y='${i}']`);
+                        checkedTd.classList.remove('check')
+                    }
                 }
                 this.isChecking = false;
-                console.log('дошло')
                 if(wordInStroke === this.WORD) {
-                    console.log('совпадает')
-                    document.getElementById('end-game-contaner').style.display = 'flex';
+                    document.removeEventListener('keydown', this.keyDown);
+                    document.getElementById('win-game-contaner').style.display = 'flex';
                 }
             }, 600)
 
