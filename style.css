@@ -1,7 +1,25 @@
 * {
     margin: unset;
     padding: unset;
-    color: white;
+    user-select: none; 
+}
+:root {
+    --purple-for-containers: #12121a;
+    --purple-dark-blur: rgba(15, 15, 25, 0.8);
+    --purple-for-active: rgba(91, 75, 138, 0.2);
+    --purple-for-hovers: #7c3aed6c;
+    --light-purple: #A78BFA;
+    --primary-for-text: #F3F4F6;
+    --second-for-text: #9CA3AF;
+    --purple-for-borders: rgba(139, 92, 246, 0.3);
+    --red-for-errors: #EF4444;
+    --background-for-keyboard: #1E1E2A;
+    --keyboard-for-hovers: #2D2D3A;
+    --keyboard-borders-for-hovers: #8B5CF6;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 main {
     width: 100vw;
@@ -9,15 +27,20 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #121213;
+    background: #0a0a0f;
 }
 #main-menu-container {
     display: flex;
-    height: 100vh;
+    border: 2px solid var(--purple-for-borders);
+    background: var(--purple-for-containers);
+    border-radius: 40px;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 50px;
+    gap: 20px;
     font-size: 30px;
+    color: var(--primary-for-text);
 }
 #buttons-main-menu {
     display: flex;
@@ -29,16 +52,19 @@ main {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    font-size: 25px;
-    border: 1px solid white;
-    border-radius: 15px;
-    background: #2A2A2A;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 20px;
+    border: 1px solid var(--purple-for-borders);
+    border-radius: 60px;
+    background: var(--purple-for-active);
     transition: 0.2s;
     cursor: pointer;
+    color: var(--primary-for-text);
 }
 #buttons-main-menu > button:hover {
-    background: #383838;
-    box-shadow: 0px 10px 8px 0px rgba(255, 255, 255, 0.2) inset;
+    background: var(--purple-for-hovers);
+    transform: translateY(-2px);
 }
 
 #leader-board-container {
@@ -48,6 +74,7 @@ main {
     align-items: center;
     justify-content: space-around;
     font-size: 27px;
+    color: var(--primary-for-text);
 }
 #leader-board-table {
     display: flex;
@@ -63,10 +90,10 @@ main {
     display: flex;
 }
 .row-leader-board-table > td:not(:last-child) {
-    border-right: 2px solid white;
+    border-right: 2px solid var(--purple-for-borders);
 }
 .row-leader-board-table > td {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--purple-for-borders);
     width: 90px;
     display: flex;
     justify-content: center;
@@ -77,25 +104,34 @@ main {
     font-size: 20px;
 }
 #back-to-main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-size: 25px;
-    border: 1px solid white;
-    border-radius: 15px;
-    background: #2A2A2A;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    border: 1px solid var(--purple-for-borders);
+    border-radius: 50px;
+    background: var(--purple-for-active);
+    transition: 0.2s;
+    cursor: pointer;
+    color: var(--primary-for-text);
+    transition: 300ms;
 }
 #back-to-main-menu:hover {
-    background: #383838;
-    box-shadow: 0px 10px 8px 0px rgba(255, 255, 255, 0.2) inset;
+    background: var(--purple-for-hovers);
+    transform: translateY(-2px);
 }
 #game-container {
     display: none;
     height: 100vh;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
+    color: var(--primary-for-text);
+    font-size: 20px !important;
 }
 #keyboard > div > button > img {
     width: 40px;
@@ -109,18 +145,19 @@ main {
 #game-field > tbody > tr {
     display: flex;
     gap: 10px;
-    padding: 15px;
-    background: #2A2A2A;
+    padding: 10px;
+    background: var(--purple-for-containers);
+    border: 2px solid var(--purple-for-borders);
     border-radius: 15px;
 }
 #game-field > tbody > tr > td {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    border-bottom: 2px solid white;
-    font-size: 35px;
+    width: 60px;
+    height: 50px;
+    border-bottom: 2px solid var(--purple-for-borders);
+    font-size: 40px;
     border-radius: 10px;
 }
 .check {
@@ -130,7 +167,10 @@ main {
     0% {
         opacity: 1;
     }
-    50% {
+    33% {
+        opacity: 0;
+    }
+    66% {
         opacity: 0;
     }
     100% {
@@ -140,35 +180,39 @@ main {
 #keyboard {
     display: flex;
     flex-wrap: wrap;
-    width: 700px;
+    width: 670px;
     align-items: center;
     justify-content: center;
-    background: #818384;
+    background: var(--purple-for-containers);
+    border: 2px solid var(--purple-for-borders);
     border-radius: 20px;
-    padding: 20px;
-    gap: 5px;
-}
-#first-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between !important;
+    padding: 15px;
+    gap: 10px;
 }
 #keyboard > div {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 5px;
 }
-#keyboard > div >button {
+#keyboard > div > button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50px;
     height: 50px;
-    background: #3A3A3C;
+    background: var(--background-for-keyboard);
+    border: 1px solid var(--purple-for-borders);
     border-radius: 10px;
-
+    color: var(--second-for-text);
+    font-size: 25px;
+    transition: 300ms;
+    cursor: pointer;
+}
+#keyboard > div > button:hover {
+    background: var(--keyboard-for-hovers);
+    transform: translateY(-1px);
+    border: 1px solid var(--keyboard-borders-for-hovers);
 }
 #win-game-contaner {
     display: none;
@@ -190,46 +234,40 @@ main {
 }
 .inner-end-game-container {
     display: flex;
-    gap: 25px;
+    padding: 30px;
+    gap: 35px;
     flex-direction: column;
+    background: var(--purple-dark-blur);
+    color: var(--primary-for-text);
+    border: 2px solid var(--purple-for-borders);
+    border-radius: 15px;
 }
 .inner-end-game-container > h1 {
-    font-size: 25px;
-}
-.inner-end-game-container > input {
-    font-size: 25px;
-    border: unset;
-    border-bottom: 1px solid white;
-    background: unset;
-    color: white;
-    border-radius: 15px;
-    padding: 5px;
+    font-size: 23px;
 }
 .main-menu-button {
     font-size: 25px;
-    border: 1px solid white;
-    border-radius: 15px;
-    background: #2A2A2A;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    border: 1px solid var(--purple-for-borders);
+    color: var(--primary-for-text);
+    border-radius: 20px;
+    background: var(--purple-for-active);
+    padding: 10px;
+    cursor: pointer;
 }
 .new-game-button {
     font-size: 25px;
-    border: 1px solid white;
-    border-radius: 15px;
-    background: #2A2A2A;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    border: 1px solid var(--purple-for-borders);
+    color: var(--primary-for-text);
+    border-radius: 20px;
+    background: var(--purple-for-active);
+    padding: 10px;
+    cursor: pointer;
 }
 .new-game-button:hover {
-    background: #383838;
-    box-shadow: 0px 10px 8px 0px rgba(255, 255, 255, 0.2) inset;
+    background: var(--purple-for-hovers);
+    transform: translateY(-2px);
 }
 .main-menu-button:hover {
-    background: #383838;
-    box-shadow: 0px 10px 8px 0px rgba(255, 255, 255, 0.2) inset;
+    background: var(--purple-for-hovers);
+    transform: translateY(-2px);
 }

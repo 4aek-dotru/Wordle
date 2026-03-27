@@ -105,12 +105,14 @@ export default class Game {
                     alert('Данного слова не существет')
                 }, 300)
             } else {
-                if(this.X == 4 && this.Y == 4){
-                    document.getElementById('lose-game-contaner').style.display = 'flex';
-                }
-                this.checkWord(wordInStroke);
-                this.X = -1;
-                this.Y++;
+                setTimeout(() => {
+                    if(this.X == 4 && this.Y == 4){
+                        document.getElementById('lose-game-contaner').style.display = 'flex';
+                    }
+                    this.checkWord(wordInStroke);
+                    this.X = -1;
+                    this.Y++;
+                }, 300)
             }
             setTimeout(() => {
                 for(let i = 0; i < 5; i++) {
@@ -134,14 +136,14 @@ export default class Game {
             for(let k = 0; k < 5; k++) {
                 if(k == i){
                     if(word[i] == this.WORD[k]) {
-                        document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = 'green';
+                        document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = '#10B981';
                         currentLet.push(k);
                         break;
                     }
                 }
                 if(word[i] == this.WORD[k]) {
                     if(currentLet.includes(k)) continue
-                    document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = 'yellow';
+                    document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = '#F59E0B';
                     continue;
                 }
             }
