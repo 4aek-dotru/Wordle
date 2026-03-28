@@ -160,8 +160,5 @@ export default class Game {
                 }
             }
         }
-        setTimeout(() => {
-
-        }, 300)
     }
 }
