@@ -117,10 +117,13 @@ export default class Game {
                     }, 2600)
                 }, 300)
             } else {
-                setTimeout(() => {
-                    if(this.X == 4 && this.Y == 4){
+                if(this.X == 4 && this.Y == 4){
+                    setTimeout(() => {
                         document.getElementById('lose-game-contaner').style.display = 'flex';
-                    }
+                    }, 300)
+                    return;
+                }
+                setTimeout(() => {
                     this.checkWord(wordInStroke);
                     this.X = -1;
                     this.Y++;
@@ -143,18 +146,23 @@ export default class Game {
         }, 100)
     }
     checkWord(word) {
-        let currentLet = [];
+        let currentLet = [false, false, false, false, false];
         for(let i = 0; i < 5; i++) {
             for(let k = 0; k < 5; k++) {
                 if(k == i){
                     if(word[i] == this.WORD[k]) {
                         document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = '#10B981';
-                        currentLet.push(k);
+                        currentLet[i] = true;
                         break;
                     }
                 }
-                if(word[i] == this.WORD[k]) {
-                    if(currentLet.includes(k)) continue
+            }
+        }
+        for(let i = 0; i < 5; i++) {
+            for(let k = 0; k < 5; k++) {
+                if(word[i] == this.WORD[i]) continue;
+                if(word[i] == this.WORD[k] && !currentLet[k]) {
+                    if(currentLet.includes(k)) continue;
                     document.querySelector(`td[data-x='${i}'][data-y='${this.Y}']`).style.color = '#F59E0B';
                     continue;
                 }
