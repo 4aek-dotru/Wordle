@@ -118,6 +118,11 @@ export default class Game {
                 }, 300)
             } else {
                 if(this.X == 4 && this.Y == 4){
+                    if(wordInStroke === this.WORD) {
+                        document.removeEventListener('keydown', this.keyDown);
+                        document.getElementById('win-game-contaner').style.display = 'flex';
+                        return
+                    }
                     setTimeout(() => {
                         document.getElementById('lose-game-contaner').style.display = 'flex';
                     }, 300)
